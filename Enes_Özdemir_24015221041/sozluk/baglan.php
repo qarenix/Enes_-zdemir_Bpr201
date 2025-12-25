@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 
 // xampp ayarları
 $host = 'localhost';
-$db_adi = 'sozluk_projesi'; // phpmyadmindeki isim
+$db_adi = 'sozluk_projesi'; //php ismi
 $kullanici = 'root';
 $sifre = '';
 
@@ -13,10 +13,10 @@ try {
     // pdo 
     $db = new PDO("mysql:host=$host;dbname=$db_adi;charset=utf8", $kullanici, $sifre);
 } catch (PDOException $hata) {
-    // baglanamazsa hatayi gosterip dursun
+    // bağlanmazsa hata versin
     die("Veritabani hatasi: " . $hata->getMessage());
 }
 
-// oturum islemlerini başlıyo
+// oturum
 session_start();
 ?>

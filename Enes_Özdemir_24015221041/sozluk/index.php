@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'baglan.php'; // veritabani bağlantisini cagir
 
 // linkten gelen sayfa bilgisini aliyoruz
@@ -24,7 +25,7 @@ $konular = $db->query("SELECT * FROM basliklar ORDER BY tarih DESC")->fetchAll(P
         .sol-kisim { background: white; min-height: 100vh; padding: 15px; border-right: 1px solid #ccc; }
             .linkler { text-decoration: none; color: #333; display: block; padding: 5px 0; }
         .linkler:hover { color: green; font-weight: bold; }
-        .ana-kutu { flex: 1; }
+        .ana-kutu { flex: 1;}
     </style>
 </head>
 <body>
@@ -35,6 +36,12 @@ $konular = $db->query("SELECT * FROM basliklar ORDER BY tarih DESC")->fetchAll(P
         <img src="logo.png" style="height: 35px; margin-right: 10px; background:white; border-radius:50%; padding:2px;">
         <strong>Qarenix Sözlük</strong>
     </a>
+    
+    <form class="d-flex mx-auto" action="index.php" method="get" style="width: 40%;">
+        <input type="hidden" name="sayfa" value="arama">
+        <input class="form-control me-2" type="search" name="q" placeholder="Başlık ara..." required>
+        <button class="btn btn-outline-light" type="submit">Ara</button>
+    </form>
     
     <div>
         <?php if(isset($_SESSION['uye_id'])): ?>
@@ -86,6 +93,7 @@ $konular = $db->query("SELECT * FROM basliklar ORDER BY tarih DESC")->fetchAll(P
             elseif($sayfa == 'kayit') { include 'sayfalar/kayit.php'; }
             elseif($sayfa == 'konu') { include 'sayfalar/konu.php'; } 
             elseif($sayfa == 'baslik_ac') { include 'sayfalar/baslik_ac.php'; }
+            elseif($sayfa == 'arama') { include 'sayfalar/arama.php'; }
             ?>
         </div>
     </div>
@@ -98,3 +106,6 @@ $konular = $db->query("SELECT * FROM basliklar ORDER BY tarih DESC")->fetchAll(P
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php
+ob_end_flush(); 
+?>
