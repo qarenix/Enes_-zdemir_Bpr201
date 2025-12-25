@@ -2,7 +2,7 @@
 if($_POST) {
     $ka = $_POST['kadi'];
     $mail = $_POST['email'];
-    // sifreyi veritabaninda acik tutmamak için 
+    // şifreyi şifrelemek içim
     $pass = password_hash($_POST['sifre'], PASSWORD_DEFAULT);
 
     $ekle = $db->prepare("INSERT INTO uyeler (kadi, email, sifre) VALUES (?, ?, ?)");

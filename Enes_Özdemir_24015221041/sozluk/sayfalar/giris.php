@@ -3,14 +3,14 @@ if($_POST) {
     $ka = $_POST['kadi'];
     $sifre = $_POST['sifre'];
 
-    // kullanici adini veritabaninda ara
+    // kullanıcı adını veri tabanında arıyo
     $sor = $db->prepare("SELECT * FROM uyeler WHERE kadi = ?");
     $sor->execute([$ka]);
     $kullanici = $sor->fetch();
 
-    // kullanici bulunduysa ve sifre dogruysa (hash kontrolu)
+    // kullanici bulunduysa ve sifre dogruysa 
     if($kullanici && password_verify($sifre, $kullanici['sifre'])) {
-        // oturum degiskenlerini ata
+        // oturum bilgilerini ata
         $_SESSION['uye_id'] = $kullanici['id'];
         $_SESSION['kadi'] = $kullanici['kadi'];
         $_SESSION['rol'] = $kullanici['rol'];
